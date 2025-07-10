@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     const ws = new WebSocketService(
-      'ws://localhost:8081',
+      'wss://real-time-chatapp-be.onrender.com',
       handleWebSocketMessage,
       handleConnectionStatusChange
     );
