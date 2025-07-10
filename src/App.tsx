@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import LandingPage from './components/LandingPage';
 import ChatInterface from './components/ChatInterface';
 import { WebSocketService } from './utils/websocket';
 import type { Message, User, ConnectionStatus, WebSocketMessage } from './types/chat';
+import { FaArrowDown } from 'react-icons/fa';
 
 function App() {
   const [messages, setMessages] = useState<Message[]>([]);

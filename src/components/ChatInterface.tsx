@@ -1,9 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Message, User, ConnectionStatus } from '../types/chat';
 import MessageList from './MessageList';
 import ChatHeader from './ChatHeader';
 import ChatInput from './ChatInput';
-import { FaArrowDown } from 'react-icons/fa';
 
 interface ChatInterfaceProps {
   messages: Message[];
@@ -28,22 +27,22 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
   const [showScrollToBottom, setShowScrollToBottom] = useState(false);
 
   // Helper to check if user is at the bottom
-  const isAtBottom = () => {
+  const isAtBottom = useCallback(() => {
     const area = messagesAreaRef.current;
     if (!area) return true;
     return area.scrollHeight - area.scrollTop - area.clientHeight < 40;
-  };
+  }, []);
 
   // Scroll to bottom
-  const scrollToBottom = () => {
+  const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     setShowScrollToBottom(false);
-  };
+  }, []);
 
   // Show/hide arrow on scroll
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     setShowScrollToBottom(!isAtBottom());
-  };
+  }, [isAtBottom]);
 
   // On new message, show arrow if not at bottom
   useEffect(() => {
@@ -61,7 +60,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
       area.addEventListener('scroll', handleScroll);
       return () => area.removeEventListener('scroll', handleScroll);
     }
-  }, []);
+  }, [handleScroll]);
 
   const handleSendMessage = () => {
     if (inputValue.trim() && connectionStatus === 'connected') {
@@ -104,7 +103,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
             aria-label="Scroll to latest message"
             style={{ boxShadow: '0 0 16px 4px #39FF14, 0 2px 8px rgba(0,0,0,0.3)' }}
           >
-            <FaArrowDown size={32} />
+            <span style={{ fontSize: 32, display: 'block', lineHeight: 1 }}>↓</span>
           </button>
         )}
       </div>
