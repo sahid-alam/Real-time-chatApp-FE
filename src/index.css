@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-retro-bg text-retro-green font-retro text-lg;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 0.03em;
+  }
+}
+
+@layer components {
+  .font-title {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    letter-spacing: 0.04em;
+  }
+  .card {
+    @apply bg-black border-2 border-retro-border rounded-lg shadow-lg font-retro;
+  }
+  .btn-primary {
+    @apply bg-retro-green text-black font-retro border-2 border-retro-border rounded px-4 py-2 text-lg transition-all duration-150 shadow hover:bg-retro-amber hover:text-black;
+  }
+  .btn-secondary {
+    @apply bg-black text-retro-green font-retro border-2 border-retro-border rounded px-4 py-2 text-lg transition-all duration-150 shadow hover:bg-retro-amber hover:text-black;
+  }
+  .input-field {
+    @apply bg-black border-2 border-retro-border text-retro-green placeholder-retro-amber font-retro rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-retro-green focus:border-retro-green transition-all duration-200;
+  }
+  .message-bubble {
+    @apply rounded px-4 py-2 max-w-xs md:max-w-md break-words font-retro border-2 border-retro-border bg-black;
+  }
+  .message-own {
+    @apply bg-[#1a3d1a] text-retro-green border-retro-green;
+  }
+  .message-other {
+    @apply bg-[#181c18] text-retro-green border-retro-border;
+  }
+  .message-system {
+    @apply bg-black border-2 border-retro-amber text-retro-amber text-center text-base font-retro;
+  }
+  .status-indicator {
+    @apply w-3 h-3 rounded-full border-2 border-retro-border;
+  }
+  .status-connected {
+    @apply bg-retro-green;
+  }
+  .status-connecting {
+    @apply bg-retro-amber animate-pulse-slow;
+  }
+  .status-disconnected {
+    @apply bg-red-600;
+  }
+  .sender-highlight {
+    @apply text-retro-amber font-bold underline;
+  }
+  .sender-own {
+    @apply text-black font-bold underline;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-bg;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-retro-border rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-retro-green;
+} 
